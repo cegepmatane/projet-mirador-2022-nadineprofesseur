@@ -51,6 +51,7 @@ public class VueNouvellesSimple extends Vue {
 		for(Nouvelle nouvelle : nouvelles)
 		{
 			TextArea vueNouvelle = new TextArea();
+			vueNouvelle.setMaxSize(500, 20);
 			vueNouvelle.setText(nouvelle.getTitre());
 			vueNouvelles.getChildren().add(vueNouvelle);
 		}
