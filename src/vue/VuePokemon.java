@@ -9,6 +9,7 @@ import controleur.ControleurNouvellesSimple;
 import controleur.ControleurPokemon;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import modele.Nouvelle;
@@ -30,11 +31,14 @@ public class VuePokemon extends Vue {
 	public void afficherPokemon()
 	{
 		System.out.println("VuePokemon.afficherPokemon()");
+
+		// TESTS avec des images
 		
-		ImageView vuePhoto = (ImageView)lookup("#pokemon-photo");
-		// pokemon-1.png
 		// <Image url="@decoration/pokemon/pokemon-1.png" />
-		
+		ImageView vuePhoto = (ImageView)lookup("#pokemon-photo");
+		vuePhoto.setImage(new Image("/vue/decoration/pokemon/pokemon-2.png"));
+		vuePhoto.setImage(new Image("/pokemon/pokemon-5.png"));
+		vuePhoto.setImage(new Image("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png"));	
 	}
 	
 	
