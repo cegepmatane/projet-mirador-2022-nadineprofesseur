@@ -7,7 +7,7 @@ import vue.VuePokemon;
 public class App {
 
 	public static void main(String[] parametres) {
-		Controleur.choisirVuePrincipale(VueNouvellesSimple.class);
+		Controleur.choisirVuePrincipale(VuePokemon.class);
 		Fenetre.launch(Fenetre.class, parametres);	
 	}
 

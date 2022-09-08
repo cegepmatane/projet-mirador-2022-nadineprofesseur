@@ -35,8 +35,6 @@ public class VuePokemon extends Vue {
 		// pokemon-1.png
 		// <Image url="@decoration/pokemon/pokemon-1.png" />
 		
-		
-		
 	}
 	
 	
