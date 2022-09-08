@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.sun.media.jfxmedia.logging.Logger;
 import architecture.Controleur;
+import donnee.NouvelleDAO;
 import modele.Nouvelle;
 import vue.VueNouvellesSimple;
 
@@ -19,12 +20,8 @@ public class ControleurNouvellesSimple extends Controleur {
 		VueNouvellesSimple vue = VueNouvellesSimple.getInstance();
 		vue.afficherTotal(3);
 		
-		List<Nouvelle> nouvelles = new ArrayList<Nouvelle>();
-		nouvelles.add(new Nouvelle("Java au Cegep", "Nadine"));
-		nouvelles.add(new Nouvelle("La prof va vite", "Sebastien"));
-		nouvelles.add(new Nouvelle("L'ide est bizarre","classe"));
-		nouvelles.add(new Nouvelle("JAVA build pas","Raphael"));
-		
+		NouvelleDAO dao = new NouvelleDAO();
+		List<Nouvelle> nouvelles = dao.simulerListeNouvelles();
 		vue.afficherNouvelles(nouvelles);
 		
 	}
