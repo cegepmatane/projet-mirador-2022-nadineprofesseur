@@ -19,10 +19,12 @@ public class ControleurPokemon extends Controleur {
 	{
 		
 		PokemonDAO dao = new PokemonDAO();
-		dao.detaillerPokemon();
+		//dao.detaillerPokemon();
+		dao.listerPokemons();
 		
 		VuePokemon vue = VuePokemon.getInstance();
 		vue.afficherPokemon();
+		
 		
 	}
 
