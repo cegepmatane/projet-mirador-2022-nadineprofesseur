@@ -38,7 +38,8 @@ public class VuePokemon extends Vue {
 		ImageView vuePhoto = (ImageView)lookup("#pokemon-photo");
 		vuePhoto.setImage(new Image("/vue/decoration/pokemon/pokemon-2.png"));
 		vuePhoto.setImage(new Image("/pokemon/pokemon-5.png"));
-		vuePhoto.setImage(new Image("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png"));	
+		vuePhoto.setImage(new Image("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png"));
+		
 	}
 	
 	
