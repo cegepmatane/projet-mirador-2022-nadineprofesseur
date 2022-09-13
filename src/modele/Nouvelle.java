@@ -6,11 +6,24 @@ public class Nouvelle {
 	protected String auteur;
 	protected String date;
 	protected String texte;
+	protected String lien;
+
+	public Nouvelle() {
+		super();
+	}
+	
 	
 	public Nouvelle(String titre, String auteur) {
 		super();
 		this.titre = titre;
 		this.auteur = auteur;
+	}
+	
+	public String getLien() {
+		return lien;
+	}
+	public void setLien(String lien) {
+		this.lien = lien;
 	}
 	public String getTitre() {
 		return titre;

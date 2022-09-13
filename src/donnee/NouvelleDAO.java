@@ -1,7 +1,10 @@
 package donnee;
 
+import java.io.ByteArrayInputStream;
+import java.io.FilterReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.io.StringBufferInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,33 +17,17 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import donnee.outil.XMLChar;
+import donnee.outil.XMLFilter;
 import modele.Nouvelle;
 
 public class NouvelleDAO {
 
-
-	public String stripNonValidXMLCharacters(String in) {
-	    StringBuffer out = new StringBuffer(); // Used to hold the output.
-	    char current; // Used to reference the current character.
-
-	    if (in == null || ("".equals(in))) return ""; // vacancy test.
-	    for (int i = 0; i < in.length(); i++) {
-	        current = in.charAt(i); // NOTE: No IndexOutOfBoundsException caught here; it should not happen.
-	        if ((current == 0x9) ||
-	            (current == 0xA) ||
-	            (current == 0xD) ||
-	            ((current >= 0x20) && (current <= 0xD7FF)) ||
-	            ((current >= 0xE000) && (current <= 0xFFFD)) ||
-	            ((current >= 0x10000) && (current <= 0x10FFFF)))
-	            out.append(current);
-	    }
-	    return out.toString();
-	} 	
-	
 	public List<Nouvelle> simulerListeNouvelles()
 	{
 		List<Nouvelle> nouvelles = new ArrayList<Nouvelle>();
@@ -59,17 +46,16 @@ public class NouvelleDAO {
 		
 		// (1) ALLER chercher le flux de données sur internet
 		
-		//String URL_NOUVELLES_SPORT = "https://www.cbc.ca/cmlink/rss-sports-nhl";
-		String URL_NOUVELLES_SPORT = "https://www.theguardian.com/sport/blog/rss";
+		String URL_NOUVELLES_SPORT = "https://www.cbc.ca/cmlink/rss-sports-nhl";
+		//String URL_NOUVELLES_SPORT = "https://www.theguardian.com/sport/blog/rss";
 		String xml = null;
 		try {
 			URL url = new URL(URL_NOUVELLES_SPORT);
 			InputStream flux = url.openConnection().getInputStream();
 			Scanner lecteur = new Scanner(flux);
+			
 			lecteur.useDelimiter("\\A");
 			xml = lecteur.next();
-			xml = stripNonValidXMLCharacters(xml);
-			//System.out.println(xml);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -79,15 +65,46 @@ public class NouvelleDAO {
 		
 		try {
 			DocumentBuilder parseur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			@SuppressWarnings("deprecation")
-			Document document = parseur.parse(new StringBufferInputStream(xml));
+			Document document = parseur.parse(new ByteArrayInputStream(xml.getBytes()));
 			
-			//NodeList itemsXML = document.getElementsByTagName("item");
-			//Node firstItemXML = itemsXML.item(0);
-			//String firstItem = firstItemXML.getTextContent();
-			//System.out.println(firstItem);
+			// String titreFil = document.getElementsByTagName("title").item(0).getTextContent();
+			// System.out.println(titreFil);
 			
+			NodeList itemsXML = document.getElementsByTagName("item");
+			// Node firstItemXML = itemsXML.item(0);
+			// String firstItem = firstItemXML.getTextContent();
+			// System.out.println(firstItem);
 			
+			for(int position = 0; position < itemsXML.getLength(); position++)
+			{
+				// NodeList linksXML = itemXML.getElementsByTagName("link");
+				// Element linkXML = (Element)linksXML.item(0);
+				// String lien = linkXML.getTextContent();
+				
+				Element itemXML = (Element)itemsXML.item(position);
+				System.out.println("============= nouvel ITEM =================");
+				
+				String titre = itemXML.getElementsByTagName("title").item(0).getTextContent();
+				System.out.println(titre);
+				String lien = itemXML.getElementsByTagName("link").item(0).getTextContent();
+				System.out.println(lien);			
+				String description = itemXML.getElementsByTagName("description").item(0).getTextContent();
+				System.out.println(description);
+				String date = itemXML.getElementsByTagName("pubDate").item(0).getTextContent();
+				System.out.println(date);
+				
+				// TODO - recuperer contenu de <dc:creator>
+				// String auteur = itemXML.getElementsByTagNameNS("dc", "creator").item(0).getTextContent();
+				// System.out.println(auteur);
+				
+				Nouvelle nouvelle = new Nouvelle();
+				nouvelle.setTexte(description);
+				nouvelle.setTitre(titre);
+				nouvelle.setLien(lien);
+				
+				nouvelles.add(nouvelle);
+								
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

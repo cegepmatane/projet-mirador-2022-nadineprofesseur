@@ -21,9 +21,8 @@ public class ControleurNouvellesSimple extends Controleur {
 		vue.afficherTotal(3);
 		
 		NouvelleDAO dao = new NouvelleDAO();
-		dao.listerNouvellesSport(); // appel pour tester execution
-		
-		List<Nouvelle> nouvelles = dao.simulerListeNouvelles();
+		// List<Nouvelle> nouvelles = dao.simulerListeNouvelles();
+		List<Nouvelle> nouvelles = dao.listerNouvellesSport();
 		vue.afficherNouvelles(nouvelles);
 		
 	}
