@@ -66,10 +66,16 @@ public class PokemonDAO extends ServiceDAO{
 			
 			String nom = pokemonJson.get("name").getAsString();
 			System.out.println(nom);
-			String url = pokemonJson.get("url").getAsString();			
+
+			String url = "";
+			if(pokemonJson.get("url") != null)
+			{
+				url = pokemonJson.get("url").getAsString();			
+			}
 			
 			Pokemon pokemon = new Pokemon();
 			pokemon.setNom(nom);
+			pokemon.setUrl(url);
 			pokemons.add(pokemon);
 		}
 		
