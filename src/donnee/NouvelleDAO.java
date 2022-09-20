@@ -47,8 +47,7 @@ public class NouvelleDAO {
 		String URL_NOUVELLES_SPORT = "https://www.cbc.ca/cmlink/rss-sports-nhl";
 		//String URL_NOUVELLES_SPORT = "https://www.theguardian.com/sport/blog/rss";
 		
-		ServiceDAO dao = new ServiceDAO();
-		String xml = dao.telechargerDonnees(URL_NOUVELLES_SPORT);
+		String xml = ServiceDAO.telechargerDonnees(URL_NOUVELLES_SPORT);
 		
 		// (2) Parser les données recues en XML ou JSON
 		

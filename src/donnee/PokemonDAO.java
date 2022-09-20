@@ -23,8 +23,7 @@ public class PokemonDAO {
 		// (1) ALLER chercher le flux de données sur internet
 		
 		String URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/" + nom;
-		ServiceDAO dao = new ServiceDAO();
-		String json = dao.telechargerDonnees(URL_POKEMON);
+		String json = ServiceDAO.telechargerDonnees(URL_POKEMON);
 		System.out.println(json);
 		
 		// (2) Parser les données recues en XML ou JSON
@@ -53,8 +52,7 @@ public class PokemonDAO {
 		// (1) ALLER chercher le flux de données sur internet
 		
 		String URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/";
-		ServiceDAO dao = new ServiceDAO();
-		String json = dao.telechargerDonnees(URL_POKEMON);
+		String json = ServiceDAO.telechargerDonnees(URL_POKEMON);
 
 		// (2) Parser les données recues en XML ou JSON
 
