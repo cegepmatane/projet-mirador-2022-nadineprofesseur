@@ -22,8 +22,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import donnee.outil.XMLChar;
-import donnee.outil.XMLFilter;
 import modele.Nouvelle;
 
 public class NouvelleDAO {
@@ -48,18 +46,9 @@ public class NouvelleDAO {
 		
 		String URL_NOUVELLES_SPORT = "https://www.cbc.ca/cmlink/rss-sports-nhl";
 		//String URL_NOUVELLES_SPORT = "https://www.theguardian.com/sport/blog/rss";
-		String xml = null;
-		try {
-			URL url = new URL(URL_NOUVELLES_SPORT);
-			InputStream flux = url.openConnection().getInputStream();
-			Scanner lecteur = new Scanner(flux);
-			
-			lecteur.useDelimiter("\\A");
-			xml = lecteur.next();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if(xml == null) return null;
+		
+		ServiceDAO dao = new ServiceDAO();
+		String xml = dao.telechargerDonnees(URL_NOUVELLES_SPORT);
 		
 		// (2) Parser les données recues en XML ou JSON
 		

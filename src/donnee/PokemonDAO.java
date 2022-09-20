@@ -23,18 +23,9 @@ public class PokemonDAO {
 		// (1) ALLER chercher le flux de données sur internet
 		
 		String URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/" + nom;
-		String json = null;
-		try {
-			URL url = new URL(URL_POKEMON);
-			InputStream flux = url.openConnection().getInputStream();
-			Scanner lecteur = new Scanner(flux);
-			lecteur.useDelimiter("\\A");
-			json = lecteur.next();
-			System.out.println(json);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if(json == null) return null;
+		ServiceDAO dao = new ServiceDAO();
+		String json = dao.telechargerDonnees(URL_POKEMON);
+		System.out.println(json);
 		
 		// (2) Parser les données recues en XML ou JSON
 
@@ -51,14 +42,6 @@ public class PokemonDAO {
 	    JsonObject moveJson = listeMovesJson.get(0).getAsJsonObject().get("move").getAsJsonObject();
 	    String move = moveJson.get("name").getAsString();
 	    System.out.println(move);
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
 		return pokemon;
 	}
 	
@@ -67,23 +50,12 @@ public class PokemonDAO {
 		System.out.println("PokemonDAO.listerPokemons()");
 		List<Pokemon> pokemons = new ArrayList<Pokemon>();
 		
-		
 		// (1) ALLER chercher le flux de données sur internet
 		
 		String URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/";
-		String json = null;
-		try {
-			URL url = new URL(URL_POKEMON);
-			InputStream flux = url.openConnection().getInputStream();
-			Scanner lecteur = new Scanner(flux);
-			lecteur.useDelimiter("\\A");
-			json = lecteur.next();
-			System.out.println(json);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if(json == null) return null;
-		
+		ServiceDAO dao = new ServiceDAO();
+		String json = dao.telechargerDonnees(URL_POKEMON);
+
 		// (2) Parser les données recues en XML ou JSON
 
 		JsonParser parseur = new JsonParser();

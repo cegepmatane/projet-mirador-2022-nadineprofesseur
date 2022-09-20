@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ServiceDAO {
 
-	public String telechargerDonnees(String hyperlien)
+	public static String telechargerDonnees(String hyperlien)
 	{
 		String xml = null;
 		try {

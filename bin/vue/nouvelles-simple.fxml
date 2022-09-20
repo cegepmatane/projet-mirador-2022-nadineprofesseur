@@ -13,9 +13,14 @@
          </font>
       </Label>
       <FlowPane id="liste-nouvelles" fx:id="listeNouvelles" layoutX="99.0" layoutY="197.0" prefHeight="431.0" prefWidth="628.0" style="-fx-background-color: lightgreen;" />
-      <Label id="total-nouvelles" fx:id="totalNouvelles" layoutX="99.0" layoutY="127.0" prefHeight="34.0" prefWidth="482.0" text="Il y a 10 nouvelles">
+      <Label id="total-nouvelles" fx:id="totalNouvelles" layoutX="98.0" layoutY="643.0" prefHeight="34.0" prefWidth="628.0" text="Il y a 10 nouvelles">
          <font>
-            <Font size="18.0" />
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label id="titre-fil-nouvelles" fx:id="titreFilNouvelles" layoutX="98.0" layoutY="155.0" prefHeight="34.0" prefWidth="628.0" text="Titre...">
+         <font>
+            <Font name="Hack Bold" size="26.0" />
          </font>
       </Label>
    </children>
