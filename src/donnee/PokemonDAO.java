@@ -14,7 +14,7 @@ import com.google.gson.JsonParser;
 
 import modele.Pokemon;
 
-public class PokemonDAO {
+public class PokemonDAO extends ServiceDAO{
 	
 	public Pokemon detaillerPokemon(String nom)
 	{
@@ -23,7 +23,7 @@ public class PokemonDAO {
 		// (1) ALLER chercher le flux de données sur internet
 		
 		String URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/" + nom;
-		String json = ServiceDAO.telechargerDonnees(URL_POKEMON);
+		String json = telechargerDonnees(URL_POKEMON);
 		System.out.println(json);
 		
 		// (2) Parser les données recues en XML ou JSON
@@ -52,7 +52,7 @@ public class PokemonDAO {
 		// (1) ALLER chercher le flux de données sur internet
 		
 		String URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/";
-		String json = ServiceDAO.telechargerDonnees(URL_POKEMON);
+		String json = telechargerDonnees(URL_POKEMON);
 
 		// (2) Parser les données recues en XML ou JSON
 

@@ -1,16 +1,8 @@
 package donnee;
 
 import java.io.ByteArrayInputStream;
-import java.io.FilterReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.StringBufferInputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,7 +16,7 @@ import org.xml.sax.SAXException;
 
 import modele.Nouvelle;
 
-public class NouvelleDAO {
+public class NouvelleDAO extends ServiceDAO {
 
 	public List<Nouvelle> simulerListeNouvelles()
 	{
@@ -47,7 +39,7 @@ public class NouvelleDAO {
 		String URL_NOUVELLES_SPORT = "https://www.cbc.ca/cmlink/rss-sports-nhl";
 		//String URL_NOUVELLES_SPORT = "https://www.theguardian.com/sport/blog/rss";
 		
-		String xml = ServiceDAO.telechargerDonnees(URL_NOUVELLES_SPORT);
+		String xml = telechargerDonnees(URL_NOUVELLES_SPORT);
 		
 		// (2) Parser les données recues en XML ou JSON
 		
